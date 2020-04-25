@@ -9,8 +9,7 @@ import android.view.WindowManager;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements IBoard
-{
+public class MainActivity extends AppCompatActivity implements IBoard {
 	private ConstraintLayout clLayout;
 	private ArrayList<Grid> lstGrids;
 	private ArrayList<Piece> lstPieces;
@@ -21,8 +20,7 @@ public class MainActivity extends AppCompatActivity implements IBoard
 	private boolean bEnded;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -41,8 +39,7 @@ public class MainActivity extends AppCompatActivity implements IBoard
 	}
 
 	@Override
-	protected void onResume()
-	{
+	protected void onResume() {
 		super.onResume();
 
 		AddGrids();
@@ -69,23 +66,20 @@ public class MainActivity extends AppCompatActivity implements IBoard
 		}
 	};
 
-	boolean gridAvailable(int col, int row)
-	{
-		for (Piece P : lstPieces)
-		{
-			if (P.getCol() == col && P.getRow() == row)
+	boolean gridAvailable(int col, int row) {
+		for (Piece P : lstPieces) {
+			if (P.getCol() == col && P.getRow() == row) {
 				return false;
+			}
 		}
 
 		return true;
 	}
 
-	private void AddGrids()
-	{
+	private void AddGrids() {
 		lstGrids.clear();
 
-		for (int i = 0; i < GLib.SIDE * 18; i++)
-		{
+		for (int i = 0; i < GLib.SIDE * 18; i++) {
 			Grid grid = new Grid(this, i);
 			grid.setOnClickListener(OnGrid);
 			clLayout.addView(grid, iSide, iSide);
@@ -94,31 +88,22 @@ public class MainActivity extends AppCompatActivity implements IBoard
 		}
 	}
 
-	private void LocateGrids()
-	{
+	private void LocateGrids() {
 		ConstraintSet set = new ConstraintSet();
 		set.clone(clLayout);
-
-		for (int i = 0; i < GLib.SIDE * 18; i++)
-		{
+		for (int i = 0; i < GLib.SIDE * 18; i++) {
 			int X = lstGrids.get(i).getCol();
 			int Y = lstGrids.get(i).getRow();
 
-			if (Y == 0)
-			{
+			if (Y == 0) {
 				set.connect(lstGrids.get(i).getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
-			}
-			else
-			{
+			} else {
 				set.connect(lstGrids.get(i).getId(), ConstraintSet.TOP, lstGrids.get(i - GLib.SIDE).getId(), ConstraintSet.BOTTOM);
 			}
 
-			if (X == 0)
-			{
+			if (X == 0) {
 				set.connect(lstGrids.get(i).getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START);
-			}
-			else
-			{
+			} else {
 				set.connect(lstGrids.get(i).getId(), ConstraintSet.LEFT, lstGrids.get(i - 1).getId(), ConstraintSet.RIGHT);
 			}
 		}
@@ -127,14 +112,12 @@ public class MainActivity extends AppCompatActivity implements IBoard
 	}
 
 	@Override
-	public int getGridID(int col, int row)
-	{
+	public int getGridID(int col, int row) {
 		return lstGrids.get(row * GLib.SIDE + col).getId();
 	}
 
 	@Override
-	public ConstraintLayout getLayout()
-	{
+	public ConstraintLayout getLayout() {
 		return clLayout;
 	}
 }

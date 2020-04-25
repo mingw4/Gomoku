@@ -8,16 +8,14 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 @SuppressLint("ViewConstructor")
-public class Piece extends AppCompatButton
-{
+public class Piece extends AppCompatButton {
 	private int iX;
 	private int iY;
 	private boolean bBlack;
 
 	private IBoard iBoard;
 
-	public Piece(Context context, boolean bBlack, IBoard iBoard)
-	{
+	public Piece(Context context, boolean bBlack, IBoard iBoard) {
 		super(context);
 		setId(generateViewId());
 
@@ -27,8 +25,7 @@ public class Piece extends AppCompatButton
 		setBackground(context.getDrawable(bBlack ? R.drawable.black : R.drawable.white));
 	}
 
-	public void setLocation(int x, int y)
-	{
+	public void setLocation(int x, int y) {
 		iX = x;
 		iY = y;
 
@@ -48,18 +45,15 @@ public class Piece extends AppCompatButton
 		set.applyTo(kLayout);
 	}
 
-	public int getCol()
-	{
+	public int getCol() {
 		return iX;
 	}
 
-	public int getRow()
-	{
+	public int getRow() {
 		return iY;
 	}
 
-	public boolean getSide()
-	{
+	public boolean getSide() {
 		return bBlack;
 	}
 }
