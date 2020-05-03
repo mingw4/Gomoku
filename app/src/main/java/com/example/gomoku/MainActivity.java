@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 				piece.setLocation(grid.getCol(), grid.getRow());
 
 				bNowBlack = !bNowBlack;
+
+				find(piece);
 			}
 			
 		}
