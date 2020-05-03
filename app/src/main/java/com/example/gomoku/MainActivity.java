@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 				piece.setLocation(grid.getCol(), grid.getRow());
 
 				bNowBlack = !bNowBlack;
+				find(piece);
 			}
 			
 		}
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 			int pCol = P.getCol() + gainX;
 			int pRow = P.getRow();
 			while (pRow >= 0 && pRow < GLib.SIDE) {
-				if (sameSideAt(P.getSide(), pCol, pRow) {
+				if (sameSideAt(P.getSide(), pCol, pRow)) {
 					nHMax++;
 					pCol += gainX;
 					continue;
@@ -101,8 +103,10 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 		}
 		if (nHMax == 5) {
 			bEnded = true;
-		}
+            Toast.makeText(getApplicationContext(),"Win",Toast.LENGTH_SHORT).show();
+        }
 	}
+
 	boolean sameSideAt(boolean bBlack, int col, int row)
 	{
 		for (Piece P : lstPieces)
