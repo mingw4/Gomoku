@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 
 				bNowBlack = !bNowBlack;
 			}
+			
 		}
 	};
 
@@ -121,3 +122,4 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 		return clLayout;
 	}
 }
+
