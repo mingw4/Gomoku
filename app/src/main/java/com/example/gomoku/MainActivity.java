@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 
 		return true;
 	}
+	//check.
 	void find(Piece P) {
 		int nVMax = 1;
 		int nHMax = 1;
