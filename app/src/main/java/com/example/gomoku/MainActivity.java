@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 			int pCol = P.getCol() + gainX;
 			int pRow = P.getRow();
 			while (pRow >= 0 && pRow < GLib.SIDE) {
-				if (sameSideAt(P.getSide(), pCol, pRow) {
+				if (sameSideAt(P.getSide(), pCol, pRow)) {
 					nHMax++;
 					pCol += gainX;
 					continue;
