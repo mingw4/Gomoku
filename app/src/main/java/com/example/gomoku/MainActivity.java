@@ -76,7 +76,43 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 
 		return true;
 	}
+	void find(Piece P) {
+		int nVMax = 1;
+		int nHMax = 1;
+		int nLMax = 1;
+		int nRMax = 1;
+		for (int i = 0; i < 2; i++) {
+			int gainX;
+			if (i % 2 == 0) {
+				gainX = 1;
+			} else {
+				gainX = -1;
+			}
+			int pCol = P.getCol() + gainX;
+			int pRow = P.getRow();
+			while (pRow >= 0 && pRow < GLib.SIDE) {
+				if (sameSideAt(P.getSide(), pCol, pRow) {
+					nHMax++;
+					pCol += gainX;
+					continue;
+				}
+				break;
+			}
+		}
+		if (nHMax == 5) {
+			bEnded = true;
+		}
+	}
+	boolean sameSideAt(boolean bBlack, int col, int row)
+	{
+		for (Piece P : lstPieces)
+		{
+			if (P.getSide() == bBlack && P.getCol() == col && P.getRow() == row)
+				return true;
+		}
 
+		return false;
+	}
 	private void AddGrids() {
 		lstGrids.clear();
 
