@@ -54,8 +54,7 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 		{
 			Grid grid = (Grid) view;
 
-			if (gridAvailable(grid.getCol(), grid.getRow()) && !bEnded)
-			{
+			if (gridAvailable(grid.getCol(), grid.getRow()) && !bEnded) {
 				Piece piece = new Piece(getBaseContext(), bNowBlack, MainActivity.this);
 				clLayout.addView(piece, iPiece, iPiece);
 
@@ -66,8 +65,17 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 
 				find(piece);
 			}
-			
+			if (gridAvailable(grid.getCol(), grid.getRow()) && bEnded) {
+				for (Piece piece : lstPieces) {
+					clLayout.removeView(piece);
+				}
+				lstPieces.clear();
+				bNowBlack = true;
+				bEnded = false;
+			}
 		}
+
+
 	};
 
 	boolean gridAvailable(int col, int row) {
