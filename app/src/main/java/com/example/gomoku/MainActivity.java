@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 				piece.setLocation(grid.getCol(), grid.getRow());
 
 				bNowBlack = !bNowBlack;
+
 				find(piece);
 			}
 			
@@ -103,7 +104,12 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 		}
 		if (nHMax == 5) {
 			bEnded = true;
-            Toast.makeText(getApplicationContext(),"Win",Toast.LENGTH_SHORT).show();
+			if (P.getSide()) {
+                Toast.makeText(getApplicationContext(),"Black Win!",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(),"White Win!",Toast.LENGTH_SHORT).show();
+            }
+
         }
 	}
 
