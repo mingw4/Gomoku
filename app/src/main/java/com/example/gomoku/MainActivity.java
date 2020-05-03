@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 			}
 			int pCol = P.getCol() + gainX;
 			int pRow = P.getRow();
-			while (pRow >= 0 && pRow < GLib.SIDE) {
+			while (pCol >= 0 && pCol < GLib.SIDE) {
 				if (sameSideAt(P.getSide(), pCol, pRow)) {
 					nHMax++;
 					pCol += gainX;
@@ -102,7 +102,69 @@ public class MainActivity extends AppCompatActivity implements IBoard {
 				break;
 			}
 		}
-		if (nHMax == 5) {
+		for (int i = 0; i < 2; i++) {
+			int gainY;
+			if (i % 2 == 0) {
+				gainY = 1;
+			} else {
+				gainY = -1;
+			}
+			int pCol = P.getCol();
+			int pRow = P.getRow() + gainY;
+			while (pRow >= 0 && pRow < GLib.SIDE) {
+				if (sameSideAt(P.getSide(), pCol, pRow)) {
+					nVMax++;
+					pRow += gainY;
+					continue;
+				}
+				break;
+			}
+		}
+		for (int i = 0; i < 2; i++) {
+			int gainX;
+			int gainY;
+			if (i % 2 == 0) {
+				gainX = 1;
+				gainY = -1;
+			} else {
+				gainX = -1;
+				gainY = 1;
+			}
+			int pCol = P.getCol() + gainX;
+			int pRow = P.getRow() + gainY;
+			while (pRow >= 0 && pRow < GLib.SIDE && pCol >= 0 && pCol < GLib.SIDE) {
+				if (sameSideAt(P.getSide(), pCol, pRow)) {
+					nLMax++;
+					pCol += gainX;
+					pRow += gainY;
+					continue;
+				}
+				break;
+			}
+		}
+		for (int i = 0; i < 2; i++) {
+			int gainX;
+			int gainY;
+			if (i % 2 == 0) {
+				gainX = 1;
+				gainY = 1;
+			} else {
+				gainX = -1;
+				gainY = -1;
+			}
+			int pCol = P.getCol() + gainX;
+			int pRow = P.getRow() + gainY;
+			while (pRow >= 0 && pRow < GLib.SIDE && pCol >= 0 && pCol < GLib.SIDE) {
+				if (sameSideAt(P.getSide(), pCol, pRow)) {
+					nRMax++;
+					pCol += gainX;
+					pRow += gainY;
+					continue;
+				}
+				break;
+			}
+		}
+		if (nHMax == 5 || nVMax == 5 || nLMax == 5 || nRMax == 5) {
 			bEnded = true;
 			if (P.getSide()) {
                 Toast.makeText(getApplicationContext(),"Black Win!",Toast.LENGTH_SHORT).show();
